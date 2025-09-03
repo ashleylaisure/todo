@@ -44,7 +44,8 @@ To learn more about developing your project with Expo, look at the following res
 Start Building: 
 
 ```bash
-npm create convex@latest
+npm i convex
+npx convex dev
 ```
 
 ## Join the community
