@@ -48,9 +48,11 @@ npm i convex
 npx convex dev
 ```
 
-## Join the community
+## Linear Gradient
 
-Join our community of developers creating universal apps.
+expo-linear-gradient provides a native React view that transitions between multiple colors in a linear direction.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [Expo Docs](https://docs.expo.dev/versions/latest/sdk/linear-gradient/)
+```bash
+npx expo install expo-linear-gradient
+```
