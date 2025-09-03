@@ -25,12 +25,12 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Theme Toogle
 
-When you're ready, run:
+AsyncStorage is React Native’s simple, promise-based API for persisting small bits of data on a user’s device. Think of it as the mobile-app equivalent of the browser’s localStorage, but asynchronous and cross-platform.
 
 ```bash
-npm run reset-project
+npm i @react-native-async-storage/async-storage
 ```
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
