@@ -1,18 +1,25 @@
 import { createHomeStyles } from "@/assets/styles/home.styles";
 import { api } from "@/convex/_generated/api";
-import useTheme, { ColorScheme } from "@/hooks/useTheme";
-import { useMutation, useQuery } from "convex/react";
-import { Link } from "expo-router";
-import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import useTheme from "@/hooks/useTheme";
+import { useQuery } from "convex/react";
+import { FlatList, StatusBar} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
 import Header from "@/components/Header";
 import TodoInput from "@/components/TodoInput";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import EmptyState from "@/components/EmptyState";
+import TodoCard from "@/components/TodoCard";
+
 
 export default function Index() {
-  const { toggleDarkMode, colors } = useTheme();
-
+  const { colors } = useTheme();
   const styles = createHomeStyles(colors)
+
+  const todos = useQuery(api.todo.getTodos)
+
+  const isLoading = todos === undefined
+  if(isLoading) return <LoadingSpinner />
 
   return (
     <LinearGradient colors={colors.gradients.background} style={styles.container}>
@@ -22,10 +29,16 @@ export default function Index() {
         <Header />
 
         <TodoInput />
-        
-        <TouchableOpacity onPress={toggleDarkMode}>
-          <Text>Toggle Dark Mode</Text>
-        </TouchableOpacity>
+
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => <TodoCard item={item} />}
+          keyExtractor={(item) => item._id}
+          style={styles.todoList}
+          contentContainerStyle={styles.todoListContent}
+          ListEmptyComponent={<EmptyState />}
+          showsVerticalScrollIndicator={false}
+        />
       </SafeAreaView>
     </LinearGradient>
   );
